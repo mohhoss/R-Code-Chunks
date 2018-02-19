@@ -62,4 +62,5 @@ partition <- function(arr, p, r) {
      
      output <- list(Q = i, A =arr)
      return(output)
+
 }
