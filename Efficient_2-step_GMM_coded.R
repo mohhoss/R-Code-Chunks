@@ -1,4 +1,3 @@
-
 efficient2step_gmm_f <- function(y, X, Z, flag_print) {
      
      # Do Initial GMM Algebra
