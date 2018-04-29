@@ -1,33 +1,20 @@
-sample_j_order_autocovariance <- function(sample,j,Mean=NULL) {
-     z <- sample
-     l_z <- length(z)
-     if (is.null(Mean)) {
-          Mean<-mean(z)
-     }
-     return(sum((z[(j+1):l_z]-Mean)*((r[1:(l_z-j)]-Mean)))/l_z)
-}
+"OLS for R:
+*** make sure to have all functions included here when running OLS_with_robust_standard_errors_f
+INPUTS:
+y takes a vector of dependent variable
+X takes a matrix (or data.frame) of regressors
+print_flag takes either 1 (to print estimates and a number of measures) or 0 (not to print them)
 
-sample_j_order_autocovariance_coefficient <- function(sample,j,Mean=NULL) {
-     return(sample_j_order_autocovariance(sample=sample,j=j,Mean)/sample_j_order_autocovariance(sample=sample,j=0,Mean))
-}
-
-annual_inflation_rate_over_t <- function(X) {
-     return(c(0, ((X[2:length(X)]/X[1:(length(X)-1)])^12 -1)*100 )
-     )
-     
-}
-
-ljung_box_q_statistic <- function(n,rho_vector) {
-     return(n*(n+2)*sum((rho_vector^2)/(n-(1:length(rho_vector)))))
-}
-
-standard_error_estimator <- function(x,epsilon) {
-     S <- 0
-     for (i in 1:length(epsilon)) {
-          S <- S + (epsilon[i]^2)*(x[i]^2)
-     }
-     return(S/i)
-}
+OUTPUTS:
+ b carries the estimates for the regressors' coefficients
+ se carries the standard error
+ t carries the t-values
+ v carries the Asymptotic Variance of the estimates
+ nobs carries the number of observations
+ mean_y carries the mean of the dependent variable
+ R_sq carries the R Squared measure for the regression
+ see carries the standard error of the equation
+ ssr  carries the sum of squared residuals"
 
 OLS_with_robust_standard_errors_f <- function(y,X,flag_print) {
      
@@ -78,4 +65,35 @@ OLS_with_robust_standard_errors_f <- function(y,X,flag_print) {
      }
      return(list
             (b=b,se=se,t=t,v=v,nobs=nobs,mean_y=mean_y,R_sq=R_sq,see=see,ssr=ssr))
+}
+
+sample_j_order_autocovariance <- function(sample,j,Mean=NULL) {
+     z <- sample
+     l_z <- length(z)
+     if (is.null(Mean)) {
+          Mean<-mean(z)
+     }
+     return(sum((z[(j+1):l_z]-Mean)*((r[1:(l_z-j)]-Mean)))/l_z)
+}
+
+sample_j_order_autocovariance_coefficient <- function(sample,j,Mean=NULL) {
+     return(sample_j_order_autocovariance(sample=sample,j=j,Mean)/sample_j_order_autocovariance(sample=sample,j=0,Mean))
+}
+
+annual_inflation_rate_over_t <- function(X) {
+     return(c(0, ((X[2:length(X)]/X[1:(length(X)-1)])^12 -1)*100 )
+     )
+     
+}
+
+ljung_box_q_statistic <- function(n,rho_vector) {
+     return(n*(n+2)*sum((rho_vector^2)/(n-(1:length(rho_vector)))))
+}
+
+standard_error_estimator <- function(x,epsilon) {
+     S <- 0
+     for (i in 1:length(epsilon)) {
+          S <- S + (epsilon[i]^2)*(x[i]^2)
+     }
+     return(S/i)
 }
