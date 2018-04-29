@@ -1,4 +1,4 @@
-"2 Stage Least Square function for R:
+"GMM function for R:
 INPUTS:
  y takes a vector of dependent variable
  X takes a matrix (or data.frame) of instruments
