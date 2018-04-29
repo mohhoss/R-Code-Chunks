@@ -1,3 +1,14 @@
+"2 Step Efficient GMM function for R:
+*** make sure you have my coded GMM function on file when running efficient2step_gmm_f!!!
+INPUTS:
+ y takes a vector of dependent variable
+ X takes a matrix (or data.frame) of instruments
+ Z takes a matrix (or data.frame) of regressors
+ print_flag takes either 1 (to print estimates and a number of measures) or 0 (not to print them)
+
+OUTPUTS:
+ are identical to my GMM function"
+
 efficient2step_gmm_f <- function(y, X, Z, flag_print) {
      
      # Do Initial GMM Algebra
