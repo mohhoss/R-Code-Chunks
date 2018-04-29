@@ -1,3 +1,23 @@
+"2 Stage Least Square function for R:
+INPUTS:
+ y takes a vector of dependent variable
+ X takes a matrix (or data.frame) of instruments
+ Z takes a matrix (or data.frame) of regressors
+ print_flag takes either 1 (to print estimates and a number of measures) or 0 (not to print them)
+
+OUTPUTS:
+ b carries the estimates for the regressors' coefficients
+ se carries the standard error
+ t carries the t-values
+ Avar carries the Asymptotic Variance of the estimates
+ df carries the degrees of freedom of the model
+ nobs carries the number of observations
+ mean_y carries the mean of the dependent variable
+ R_sq carries the R Squared measure for the regression
+ see carries the standard error of the equation
+ ssr  carries the sum of squared residuals
+ S_hat carries the estimate for the variance of the error
+ Sargan carries the value of the Sargan Statistic for the regression"
 
 twostageLS_f <- function(y, X, Z, flag_print) {
      
